@@ -10,7 +10,7 @@ inputs:
   compute:
     type: string
     display-style: normal
-    default: "qualidev-eks"
+    default: "eks"
     description: "compute service"
 
 grains:
@@ -18,8 +18,8 @@ grains:
     kind: terraform
     spec:
       source:
-        store: torque-sample
         path: terraform/simple-tf-module
+        store: noam
       host:
         cloud-account: '{{.inputs.account}}'
         compute-service: '{{.inputs.compute}}'
