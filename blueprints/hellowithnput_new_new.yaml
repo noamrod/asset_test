@@ -1,0 +1,34 @@
+spec_version: 2-preview
+description: Auto generated blueprint for MySql terraform module
+
+inputs:
+  account:
+    type: string
+    display-style: normal
+    default: "aws"
+    description: "cloud account"
+  compute:
+    type: string
+    display-style: normal
+    default: "eks"
+    description: "compute service"
+
+grains:
+  grain1:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/simple-tf-module
+        store: noam
+      host:
+        cloud-account: '{{.inputs.account}}'
+        compute-service: '{{.inputs.compute}}'
+  grain2:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/kubectl
+        store: prod-te
+      host:
+        cloud-account: '{{.inputs.account}}'
+        compute-service: '{{.inputs.compute}}'
